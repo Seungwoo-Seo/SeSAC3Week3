@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        // 전역으로 먹여버리기
+//        UILabel.appearance().textColor = .white
+//        UITextView.appearance().textColor = .white
+
         return true
     }
 

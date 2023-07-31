@@ -1,0 +1,19 @@
+//
+//  Extension+UIColor.swift
+//  SeSAC3Week3
+//
+//  Created by 서승우 on 2023/07/31.
+//
+
+import UIKit
+
+extension UIColor {
+    static var random: UIColor {
+        return UIColor(
+            red: CGFloat(drand48()),
+            green: CGFloat(drand48()),
+            blue: CGFloat(drand48()),
+            alpha: 1.0
+        )
+    }
+}
