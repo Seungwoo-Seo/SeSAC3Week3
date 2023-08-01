@@ -9,7 +9,7 @@ import UIKit
 
 final class MovieCollectionViewController: UICollectionViewController {
 
-    let movies = MovieInfo().movie
+    var movies = MovieInfo().movie
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,14 @@ final class MovieCollectionViewController: UICollectionViewController {
         let movie = movies[indexPath.row]
         cell.configureCell(movie: movie)
 
+        // MARK: 다시
+        cell.likeButton.addTarget(
+            self,
+            action: #selector(didTapLikeButton),
+            for: .touchUpInside
+        )
+        cell.likeButton.tag = indexPath.row
+
         return cell
     }
 
@@ -45,6 +53,22 @@ final class MovieCollectionViewController: UICollectionViewController {
     ) {
         let movie = movies[indexPath.row]
         pushToMovieDetailViewController(movie: movie)
+    }
+
+}
+
+extension MovieCollectionViewController: MovieDetailTableViewHeaderDelegate {
+
+    func cancelTheLike(movie: Movie?) {
+        if let index = movies.firstIndex(where: { $0.title == movie?.title }) {
+            movies[index].like.toggle()
+
+            let cell = collectionView.cellForItem(
+                at: IndexPath(row: index, section: 0)
+            ) as! MovieCollectionViewCell
+
+            cell.likeButton.toggle
+        }
     }
 
 }
@@ -93,19 +117,6 @@ private extension MovieCollectionViewController {
 
 private extension MovieCollectionViewController {
 
-    func pushToMovieDetailViewController(movie: Movie) {
-        let vc = storyboard?.instantiateViewController(
-            withIdentifier: "MovieDetailViewController"
-        ) as! MovieDetailViewController
-
-        vc.movieTitle = movie.title
-
-        navigationController?.pushViewController(
-            vc,
-            animated: true
-        )
-    }
-
     @objc
     func didTapRightBarButtonItem(_ sender: UIBarButtonItem) {
         let vc = storyboard?.instantiateViewController(
@@ -118,6 +129,26 @@ private extension MovieCollectionViewController {
         navigationController.modalPresentationStyle = .fullScreen
 
         present(navigationController, animated: true)
+    }
+
+    @objc
+    func didTapLikeButton(_ sender: UIButton) {
+        sender.toggle
+        movies[sender.tag].like = sender.isSelected
+    }
+
+    func pushToMovieDetailViewController(movie: Movie) {
+        let vc = storyboard?.instantiateViewController(
+            withIdentifier: "MovieDetailViewController"
+        ) as! MovieDetailViewController
+
+        vc.movie = movie
+        vc.delegate = self
+
+        navigationController?.pushViewController(
+            vc,
+            animated: true
+        )
     }
 
 }

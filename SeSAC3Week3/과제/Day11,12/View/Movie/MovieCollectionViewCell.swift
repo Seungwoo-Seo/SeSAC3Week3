@@ -11,6 +11,7 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     static let identifier = "MovieCollectionViewCell"
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var bookImageView: UIImageView!
 
@@ -23,4 +24,10 @@ final class MovieCollectionViewCell: UICollectionViewCell {
         bookImageView.image = UIImage(named: "\(movie.title)")
     }
 
+}
+
+extension UIButton {
+    var toggle: Void {
+        isSelected = !isSelected
+    }
 }
