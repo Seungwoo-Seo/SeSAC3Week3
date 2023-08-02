@@ -9,25 +9,36 @@ import UIKit
 
 protocol MovieDetailTableViewHeaderDelegate: AnyObject {
     func cancelTheLike(movie: Movie?)
+    func didTapBackButton()
 }
 
 final class MovieDetailTableViewHeader: UIView {
 
     var movie: Movie?
-    weak var delegate: MovieDetailTableViewHeaderDelegate?
+    weak var homeDelegate: MovieDetailTableViewHeaderDelegate?
+    weak var detailDelegate: MovieDetailTableViewHeaderDelegate?
 
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+
 
     // MARK: 지금은 layoutSubViews를 안쓰고 다른 방법을 찾자 -> 오히려 버튼의 상태를 변경하는 등 응용도 가능할듯
-    func configure(movie: Movie) {
+    func configure(movie: Movie, isHidden: Bool = true) {
         self.movie = movie
         configureHierarchy()
         movieImageView.image = UIImage(
             named: movie.title
         )
         movieTitle.text = movie.title
+
+        backButton.isHidden = isHidden
+    }
+
+    @IBAction func didTapBackButton(_ sender: UIButton) {
+        print("들어옴?")
+        detailDelegate?.didTapBackButton()
     }
 
 }
@@ -63,7 +74,7 @@ private extension MovieDetailTableViewHeader {
     @objc
     func didTapLikeButton(_ sender: UIButton) {
         sender.toggle
-        delegate?.cancelTheLike(movie: movie)
+        homeDelegate?.cancelTheLike(movie: movie)
     }
 
 }

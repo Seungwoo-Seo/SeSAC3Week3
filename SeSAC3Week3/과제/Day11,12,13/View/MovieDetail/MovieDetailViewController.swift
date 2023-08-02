@@ -8,6 +8,7 @@
 import UIKit
 
 final class MovieDetailViewController: UIViewController {
+    static let identifier = "MovieDetailViewController"
 
     var movie: Movie?
     weak var delegate: MovieDetailTableViewHeaderDelegate?
@@ -137,6 +138,16 @@ extension MovieDetailViewController: UITableViewDelegate {
 
 }
 
+extension MovieDetailViewController: MovieDetailTableViewHeaderDelegate {
+
+    func cancelTheLike(movie: Movie?) {}
+
+    func didTapBackButton() {
+        dismiss(animated: true)
+    }
+
+}
+
 private extension MovieDetailViewController {
 
     func configureNavigationBar() {
@@ -146,8 +157,16 @@ private extension MovieDetailViewController {
 
     func configureTableHeaderView() {
         tableHeaderView.frame.size.height = 180
-        tableHeaderView.delegate = delegate
-        tableHeaderView.configure(movie: movie!)
+        tableHeaderView.homeDelegate = delegate
+        tableHeaderView.detailDelegate = self
+        if navigationController != nil {
+            tableHeaderView.configure(movie: movie!)
+        } else {
+            tableHeaderView.configure(
+                movie: movie!,
+                isHidden: false
+            )
+        }
     }
 
     func configureTableView() {

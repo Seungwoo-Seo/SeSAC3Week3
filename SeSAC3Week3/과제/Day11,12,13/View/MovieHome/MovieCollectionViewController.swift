@@ -71,6 +71,8 @@ extension MovieCollectionViewController: MovieDetailTableViewHeaderDelegate {
         }
     }
 
+    func didTapBackButton() {}
+
 }
 
 private extension MovieCollectionViewController {

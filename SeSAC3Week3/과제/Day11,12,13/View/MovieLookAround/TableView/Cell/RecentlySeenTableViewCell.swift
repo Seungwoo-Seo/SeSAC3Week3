@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol RecentlySeenTableViewCellDelegate: AnyObject {
+    func didSelectItemAt(movie: Movie)
+}
+
 final class RecentlySeenTableViewCell: UITableViewCell {
     static let identifier = "RecentlySeenTableViewCell"
 
     var recentlySeenMovies: [Movie] = []
+
+    weak var delegate: RecentlySeenTableViewCellDelegate?
 
     @IBOutlet weak var collectionView: DynamicHeightCollectionView!
 
@@ -53,6 +59,14 @@ extension RecentlySeenTableViewCell: UICollectionViewDataSource {
 }
 
 extension RecentlySeenTableViewCell: UICollectionViewDelegate {
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        let movie = recentlySeenMovies[indexPath.item]
+        delegate?.didSelectItemAt(movie: movie)
+    }
 
 }
 

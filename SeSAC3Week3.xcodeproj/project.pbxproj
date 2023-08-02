@@ -53,6 +53,7 @@
 		57DD41BD2A7A607F00E55571 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD41BB2A7A607F00E55571 /* ImageCollectionViewCell.swift */; };
 		57DD41BE2A7A607F00E55571 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57DD41BC2A7A607F00E55571 /* ImageCollectionViewCell.xib */; };
 		57DD41C12A7A81BD00E55571 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD41C02A7A81BD00E55571 /* DynamicHeightCollectionView.swift */; };
+		57DD41C52A7A9F6D00E55571 /* MovieLookAroundTableViewSecionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD41C42A7A9F6D00E55571 /* MovieLookAroundTableViewSecionKind.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		57DD41BB2A7A607F00E55571 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		57DD41BC2A7A607F00E55571 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		57DD41C02A7A81BD00E55571 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
+		57DD41C42A7A9F6D00E55571 /* MovieLookAroundTableViewSecionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLookAroundTableViewSecionKind.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,12 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				57DD41B12A7A583D00E55571 /* MovieLookAroundViewController.swift */,
-				57DD41B32A7A5E2900E55571 /* RecentlySeenTableViewCell.swift */,
-				57DD41B42A7A5E2900E55571 /* RecentlySeenTableViewCell.xib */,
-				57DD41B72A7A5E6500E55571 /* PopularTheseDaysTableViewCell.swift */,
-				57DD41B82A7A5E6500E55571 /* PopularTheseDaysTableViewCell.xib */,
-				57DD41BB2A7A607F00E55571 /* ImageCollectionViewCell.swift */,
-				57DD41BC2A7A607F00E55571 /* ImageCollectionViewCell.xib */,
+				57DD41C62A7A9F8200E55571 /* TableView */,
 			);
 			path = MovieLookAround;
 			sourceTree = "<group>";
@@ -339,6 +336,36 @@
 				57DD41C02A7A81BD00E55571 /* DynamicHeightCollectionView.swift */,
 			);
 			path = Object;
+			sourceTree = "<group>";
+		};
+		57DD41C22A7A9F3E00E55571 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				57DD41B32A7A5E2900E55571 /* RecentlySeenTableViewCell.swift */,
+				57DD41B42A7A5E2900E55571 /* RecentlySeenTableViewCell.xib */,
+				57DD41BB2A7A607F00E55571 /* ImageCollectionViewCell.swift */,
+				57DD41BC2A7A607F00E55571 /* ImageCollectionViewCell.xib */,
+				57DD41B72A7A5E6500E55571 /* PopularTheseDaysTableViewCell.swift */,
+				57DD41B82A7A5E6500E55571 /* PopularTheseDaysTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		57DD41C32A7A9F6400E55571 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				57DD41C42A7A9F6D00E55571 /* MovieLookAroundTableViewSecionKind.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		57DD41C62A7A9F8200E55571 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				57DD41C32A7A9F6400E55571 /* Section */,
+				57DD41C22A7A9F3E00E55571 /* Cell */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +453,7 @@
 				57019D812A77522C00E515BD /* ViewController.swift in Sources */,
 				57019DA92A7797A500E515BD /* MovieCollectionViewController.swift in Sources */,
 				57C2496A2A7934010032B779 /* MovieDetailBasicInformationTableViewCell.swift in Sources */,
+				57DD41C52A7A9F6D00E55571 /* MovieLookAroundTableViewSecionKind.swift in Sources */,
 				57DD41C12A7A81BD00E55571 /* DynamicHeightCollectionView.swift in Sources */,
 				57019D942A77526D00E515BD /* DiaryTableViewController.swift in Sources */,
 				57650B742A793E6C00377E4C /* TestTableViewHeaderFooterView.swift in Sources */,

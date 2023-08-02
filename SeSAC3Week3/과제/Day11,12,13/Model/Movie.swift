@@ -15,4 +15,8 @@ struct Movie {
     let rate: Double
 
     var like: Bool = false
+
+    var basicInfo: String {
+        return "\(releaseDate) | \(runtime)분 | \(rate)점"
+    }
 }

@@ -7,22 +7,10 @@
 
 import UIKit
 
-enum MovieLookAroundTableViewSecionKind: Int, CaseIterable {
-    case 최근본작품
-    case 요즘인기작품
-
-    var headerTitle: String? {
-        switch self {
-        case .최근본작품: return "최근 본 작품"
-        case .요즘인기작품: return "요즘 인기 작품"
-        }
-    }
-}
-
 final class MovieLookAroundViewController: UIViewController {
 
-    var recentlySeenMovies: [Movie] = MovieInfo().movie
-    var popularTheseDaysMovies: [Movie] = MovieInfo().movie
+    var recentlySeenMovies: [Movie] = MovieInfo().movie.shuffled()
+    var popularTheseDaysMovies: [Movie] = MovieInfo().movie.shuffled()
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -67,6 +55,7 @@ extension MovieLookAroundViewController: UITableViewDataSource {
                 for: indexPath
             ) as! RecentlySeenTableViewCell
 
+            cell.delegate = self
             cell.configure(movies: recentlySeenMovies)
 
             return cell
@@ -76,6 +65,9 @@ extension MovieLookAroundViewController: UITableViewDataSource {
                 withIdentifier: PopularTheseDaysTableViewCell.identifier,
                 for: indexPath
             ) as! PopularTheseDaysTableViewCell
+
+            let movie = popularTheseDaysMovies[indexPath.row]
+            cell.configure(movie: movie)
 
             return cell
         }
@@ -94,9 +86,43 @@ extension MovieLookAroundViewController: UITableViewDelegate {
         return section.headerTitle
     }
 
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        let section = MovieLookAroundTableViewSecionKind.allCases[indexPath.section]
+
+        let movie: Movie
+        switch section {
+        case .최근본작품: return
+        case .요즘인기작품:
+            movie = popularTheseDaysMovies[indexPath.row]
+        }
+
+        presentToMovieDetailViewController(movie: movie)
+    }
+
+}
+
+extension MovieLookAroundViewController: RecentlySeenTableViewCellDelegate {
+
+    func didSelectItemAt(movie: Movie) {
+        let vc = storyboard?.instantiateViewController(
+            withIdentifier: MovieDetailViewController.identifier
+        ) as! MovieDetailViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.movie = movie
+
+        present(vc, animated: true)
+    }
+
 }
 
 private extension MovieLookAroundViewController {
+
+    func configureNavigationBar() {
+        navigationItem.title = "둘러보기"
+    }
 
     func configureTableView() {
         tableView.dataSource = self
@@ -123,7 +149,22 @@ private extension MovieLookAroundViewController {
     }
 
     func configureHierarchy() {
+        configureNavigationBar()
         configureTableView()
+    }
+
+}
+
+private extension MovieLookAroundViewController {
+
+    func presentToMovieDetailViewController(movie: Movie) {
+        let vc = storyboard?.instantiateViewController(
+            withIdentifier: MovieDetailViewController.identifier
+        ) as! MovieDetailViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.movie = movie
+
+        present(vc, animated: true)
     }
 
 }

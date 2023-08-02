@@ -107,7 +107,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iNz-7w-FYj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iNz-7w-FYj">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -168,12 +168,28 @@
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                             </state>
                                         </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPl-kJ-9A2">
+                                            <rect key="frame" x="352" y="0.0" width="25" height="24.666666666666668"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="xmark" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="backButton:" destination="jI0-Y7-GQ2" eventType="touchUpInside" id="S1d-7B-zed"/>
+                                                <action selector="didTapBackButton:" destination="jI0-Y7-GQ2" eventType="touchUpInside" id="N14-Zp-ccS"/>
+                                                <action selector="didTapBackButton:" destination="GAw-0K-y2c" eventType="touchUpInside" id="Ubf-U3-31t"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="oJX-pM-DPs" firstAttribute="bottom" secondItem="Y6b-SA-h9L" secondAttribute="bottom" id="3fN-id-ddY"/>
                                         <constraint firstItem="Y6b-SA-h9L" firstAttribute="leading" secondItem="eUT-5V-vTD" secondAttribute="trailing" constant="16" id="Mp1-u3-82U"/>
                                         <constraint firstAttribute="bottom" secondItem="eUT-5V-vTD" secondAttribute="bottom" id="U8E-H0-IH8"/>
+                                        <constraint firstItem="qPl-kJ-9A2" firstAttribute="top" secondItem="GAw-0K-y2c" secondAttribute="top" id="U8H-YO-8nB"/>
+                                        <constraint firstAttribute="trailing" secondItem="qPl-kJ-9A2" secondAttribute="trailing" constant="16" id="XJm-dA-zDH"/>
                                         <constraint firstItem="Y6b-SA-h9L" firstAttribute="bottom" secondItem="eUT-5V-vTD" secondAttribute="bottom" id="d1s-Xb-WO3"/>
                                         <constraint firstItem="oJX-pM-DPs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y6b-SA-h9L" secondAttribute="trailing" constant="16" id="kzg-On-kc7"/>
                                         <constraint firstAttribute="trailing" secondItem="oJX-pM-DPs" secondAttribute="trailing" constant="16" id="mBV-FK-SDK"/>
@@ -182,6 +198,7 @@
                                     </constraints>
                                     <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                     <connections>
+                                        <outlet property="backButton" destination="qPl-kJ-9A2" id="hfs-io-a3P"/>
                                         <outlet property="likeButton" destination="oJX-pM-DPs" id="YG2-7B-CkG"/>
                                         <outlet property="movieImageView" destination="eUT-5V-vTD" id="Qae-kZ-Khh"/>
                                         <outlet property="movieTitle" destination="Y6b-SA-h9L" id="eb9-kx-Ixd"/>
@@ -214,6 +231,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ry-c1-wOG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="jI0-Y7-GQ2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2018" y="-454"/>
         </scene>
@@ -249,11 +267,11 @@
             </objects>
             <point key="canvasLocation" x="2018" y="-1122"/>
         </scene>
-        <!--Item-->
+        <!--홈-->
         <scene sceneID="DfS-yM-8dW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d3C-u4-pkF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="5Qe-ef-qJI"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" id="5Qe-ef-qJI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oFt-Qb-CwI">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -274,6 +292,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="2Vo-Vc-qth" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bzp-MN-AkR">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -286,11 +305,11 @@
             </objects>
             <point key="canvasLocation" x="-436" y="-17"/>
         </scene>
-        <!--Item-->
+        <!--둘러보기-->
         <scene sceneID="hOY-fG-Gye">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iAc-iH-ShQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ocz-e6-olW"/>
+                    <tabBarItem key="tabBarItem" title="둘러보기" image="star" catalog="system" id="ocz-e6-olW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dbi-7I-ZOo">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -310,6 +329,9 @@
         <image name="7번방의선물" width="240" height="361"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
