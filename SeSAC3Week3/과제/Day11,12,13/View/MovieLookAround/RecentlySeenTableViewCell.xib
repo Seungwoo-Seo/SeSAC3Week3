@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="391" height="164"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kgB-U0-pCY">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kgB-U0-pCY" customClass="DynamicHeightCollectionView" customModule="SeSAC3Week3" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="391" height="164"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hRg-5m-9AC">
@@ -37,7 +37,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="collectionView" destination="kgB-U0-pCY" id="280-1H-5No"/>
+                <outlet property="collectionView" destination="kgB-U0-pCY" id="flh-u9-2x4"/>
             </connections>
             <point key="canvasLocation" x="81.679389312977094" y="13.380281690140846"/>
         </tableViewCell>

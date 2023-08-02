@@ -52,6 +52,7 @@
 		57DD41BA2A7A5E6500E55571 /* PopularTheseDaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57DD41B82A7A5E6500E55571 /* PopularTheseDaysTableViewCell.xib */; };
 		57DD41BD2A7A607F00E55571 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD41BB2A7A607F00E55571 /* ImageCollectionViewCell.swift */; };
 		57DD41BE2A7A607F00E55571 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57DD41BC2A7A607F00E55571 /* ImageCollectionViewCell.xib */; };
+		57DD41C12A7A81BD00E55571 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD41C02A7A81BD00E55571 /* DynamicHeightCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,7 +76,7 @@
 		57019DA62A77979000E515BD /* BookWarm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookWarm.storyboard; sourceTree = "<group>"; };
 		57019DA82A7797A500E515BD /* MovieCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewController.swift; sourceTree = "<group>"; };
 		57019DAA2A779B4900E515BD /* MovieInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
-		57627D1A2A79508D00B37AF1 /* MovieDetailTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieDetailTableViewHeader.swift; path = "SeSAC3Week3/과제/Day11,12/View/MovieDetail/tableView/TableHeader/MovieDetailTableViewHeader.swift"; sourceTree = SOURCE_ROOT; };
+		57627D1A2A79508D00B37AF1 /* MovieDetailTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieDetailTableViewHeader.swift; path = "SeSAC3Week3/과제/Day11,12,13/View/MovieDetail/tableView/TableHeader/MovieDetailTableViewHeader.swift"; sourceTree = SOURCE_ROOT; };
 		57627D1F2A79F23500B37AF1 /* Timeline.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		57627D212A79F28600B37AF1 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		57627D232A79F9E500B37AF1 /* TimelineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 		57DD41B82A7A5E6500E55571 /* PopularTheseDaysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularTheseDaysTableViewCell.xib; sourceTree = "<group>"; };
 		57DD41BB2A7A607F00E55571 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		57DD41BC2A7A607F00E55571 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		57DD41C02A7A81BD00E55571 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			children = (
 				57C2495C2A792E5F0032B779 /* Model */,
 				57C2496E2A7937300032B779 /* View */,
+				57DD41BF2A7A819C00E55571 /* Object */,
 				57C249502A77A6200032B779 /* Extension */,
 			);
 			path = "Day11,12,13";
@@ -330,6 +333,14 @@
 			path = MovieLookAround;
 			sourceTree = "<group>";
 		};
+		57DD41BF2A7A819C00E55571 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				57DD41C02A7A81BD00E55571 /* DynamicHeightCollectionView.swift */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -415,6 +426,7 @@
 				57019D812A77522C00E515BD /* ViewController.swift in Sources */,
 				57019DA92A7797A500E515BD /* MovieCollectionViewController.swift in Sources */,
 				57C2496A2A7934010032B779 /* MovieDetailBasicInformationTableViewCell.swift in Sources */,
+				57DD41C12A7A81BD00E55571 /* DynamicHeightCollectionView.swift in Sources */,
 				57019D942A77526D00E515BD /* DiaryTableViewController.swift in Sources */,
 				57650B742A793E6C00377E4C /* TestTableViewHeaderFooterView.swift in Sources */,
 				57019D9C2A77576D00E515BD /* AddViewController.swift in Sources */,

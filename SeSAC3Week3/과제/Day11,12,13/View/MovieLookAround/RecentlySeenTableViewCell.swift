@@ -7,20 +7,12 @@
 
 import UIKit
 
-protocol RecentlySeenTableViewCellDelegate: AnyObject {
-
-    func didCollectionViewReloadData()
-
-}
-
 final class RecentlySeenTableViewCell: UITableViewCell {
     static let identifier = "RecentlySeenTableViewCell"
 
     var recentlySeenMovies: [Movie] = []
 
-    @IBOutlet weak var collectionView: UICollectionView!
-
-    weak var delegate: RecentlySeenTableViewCellDelegate?
+    @IBOutlet weak var collectionView: DynamicHeightCollectionView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +22,6 @@ final class RecentlySeenTableViewCell: UITableViewCell {
 
     func configure(movies: [Movie]) {
         recentlySeenMovies = movies
-        delegate?.didCollectionViewReloadData()
     }
 
 }
@@ -58,17 +49,6 @@ extension RecentlySeenTableViewCell: UICollectionViewDataSource {
 
         return cell
     }
-
-//    func collectionView(
-//        _ collectionView: UICollectionView,
-//        layout collectionViewLayout: UICollectionViewLayout,
-//        sizeForItemAt indexPath: IndexPath
-//    ) -> CGSize {
-//        let width = UIScreen.main.bounds.width / 4
-//        let height = width * 1.5
-//
-//        return CGSize(width: width, height: height)
-//    }
 
 }
 

@@ -67,7 +67,6 @@ extension MovieLookAroundViewController: UITableViewDataSource {
                 for: indexPath
             ) as! RecentlySeenTableViewCell
 
-            cell.delegate = self
             cell.configure(movies: recentlySeenMovies)
 
             return cell
@@ -97,25 +96,13 @@ extension MovieLookAroundViewController: UITableViewDelegate {
 
 }
 
-extension MovieLookAroundViewController: RecentlySeenTableViewCellDelegate {
-
-    func didCollectionViewReloadData() {
-//        tableView.reloadData()
-        print("불렸지?")
-//        tableView.reloadSections(
-//            IndexSet(integer: 0),
-//            with: .automatic
-//        )
-    }
-
-}
-
 private extension MovieLookAroundViewController {
 
     func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
+        
 
         let recentlySeenNib = UINib(
             nibName: RecentlySeenTableViewCell.identifier,
