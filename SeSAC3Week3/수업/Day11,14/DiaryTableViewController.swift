@@ -47,19 +47,19 @@ final class DiaryTableViewController: UITableViewController {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        let detailVC = storyboard?.instantiateViewController(
-            withIdentifier: "DetailViewController"
-        ) as! DetailViewController
+        let vc = storyboard?.instantiateViewController(
+            withIdentifier: "AddViewController"
+        ) as! AddViewController
 
-        detailVC.contents = "Diary 뷰컨트롤러에서 데이터 전달하면서 화면 전환 하기!!"
+        vc.type = .edit
+        vc.contents = list[indexPath.row]
 
-        // 값 전달 시 아웃렛을 활용할 수 는 없음!
-        // error -
-        detailVC.contentsLabel.text = list[indexPath.row]
-        // -
-
+//        // 값 전달 시 아웃렛을 활용할 수 는 없음!
+//        // error -
+//        vc.contentsLabel.text = list[indexPath.row]
+//        // -
         navigationController?.pushViewController(
-            detailVC,
+            vc,
             animated: true
         )
     }
@@ -81,12 +81,14 @@ final class DiaryTableViewController: UITableViewController {
         let sb = UIStoryboard(name: "Diary", bundle: nil)
         let vc = sb.instantiateViewController(
             withIdentifier: "AddViewController"
-        )
+        ) as! AddViewController
+
+        vc.type = .add
 
         // nav를 사용한다면, present와 화면 전환 방식도 nav로 수정 해주어야 함
         let nav = UINavigationController(rootViewController: vc)
 //        nav.modalTransitionStyle = .crossDissolve
-//        nav.modalPresentationStyle = .fullScreen
+        nav.modalPresentationStyle = .fullScreen
 
         present(nav, animated: true)
     }

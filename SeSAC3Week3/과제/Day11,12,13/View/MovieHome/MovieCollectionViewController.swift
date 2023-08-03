@@ -10,6 +10,11 @@ import UIKit
 final class MovieCollectionViewController: UICollectionViewController {
 
     var movies = MovieInfo().movie
+    var searchMovies: [Movie] = []
+
+    var isSearch = false
+
+    let searchBar = UISearchBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,11 +22,21 @@ final class MovieCollectionViewController: UICollectionViewController {
         configureHierarchy()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        configureNavigationBar_default()
+    }
+
     override func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return movies.count
+        if isSearch {
+            return searchMovies.count
+        } else {
+            return movies.count
+        }
     }
 
     override func collectionView(
@@ -33,7 +48,12 @@ final class MovieCollectionViewController: UICollectionViewController {
             for: indexPath
         ) as! MovieCollectionViewCell
 
-        let movie = movies[indexPath.row]
+        let movie: Movie
+        if isSearch {
+            movie = searchMovies[indexPath.row]
+        } else {
+            movie = movies[indexPath.row]
+        }
         cell.configureCell(movie: movie)
 
         // MARK: 다시
@@ -51,8 +71,41 @@ final class MovieCollectionViewController: UICollectionViewController {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        let movie = movies[indexPath.row]
+        let movie: Movie
+        if isSearch {
+            movie = searchMovies[indexPath.row]
+        } else {
+            movie = movies[indexPath.row]
+        }
         pushToMovieDetailViewController(movie: movie)
+    }
+
+}
+
+extension MovieCollectionViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(
+        _ searchBar: UISearchBar
+    ) {
+        searchToMovie()
+    }
+
+    func searchBarCancelButtonClicked(
+        _ searchBar: UISearchBar
+    ) {
+        restorationToMovies()
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBar(
+        _ searchBar: UISearchBar,
+        textDidChange searchText: String
+    ) {
+        searchToMovie()
+
+        collectionView.becomeFirstResponder()
+        print(collectionView.isFirstResponder)
+        print(searchBar.isFirstResponder)
     }
 
 }
@@ -75,20 +128,37 @@ extension MovieCollectionViewController: MovieDetailTableViewHeaderDelegate {
 
 }
 
+// UI 세팅
 private extension MovieCollectionViewController {
 
     func configureNavigationBar() {
-        navigationController?.navigationBar.tintColor = .black
         navigationItem.title = "고래밥님의 책장"
-        let rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "magnifyingglass"),
-            style: .plain,
-            target: self,
-            action: #selector(didTapRightBarButtonItem)
-        )
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-
+//        let rightBarButtonItem = UIBarButtonItem(
+//            image: UIImage(systemName: "magnifyingglass"),
+//            style: .plain,
+//            target: self,
+//            action: #selector(didTapRightBarButtonItem)
+//        )
+//        navigationItem.rightBarButtonItem = rightBarButtonItem
         navigationItem.backButtonTitle = ""
+    }
+
+    func configureSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "찾고 싶은 영화를 검색하세요."
+        searchBar.showsCancelButton = true
+        searchBar.searchTextField.clearButtonMode = .never
+
+        // 혐
+        if let containerView = searchBar.subviews.first?.subviews.last {
+            for subView in containerView.subviews {
+                if let button = subView as? UIButton {
+                    button.setTitle("취소", for: .normal)
+                }
+            }
+        }
+
+        navigationItem.titleView = searchBar
     }
 
     func configureCollectionView() {
@@ -112,11 +182,13 @@ private extension MovieCollectionViewController {
 
     func configureHierarchy() {
         configureNavigationBar()
+        configureSearchBar()
         configureCollectionView()
     }
 
 }
 
+// 동작
 private extension MovieCollectionViewController {
 
     @objc
@@ -141,8 +213,8 @@ private extension MovieCollectionViewController {
 
     func pushToMovieDetailViewController(movie: Movie) {
         let vc = storyboard?.instantiateViewController(
-            withIdentifier: "MovieDetailViewController"
-        ) as! MovieDetailViewController
+            withIdentifier: "MovieDetailTableViewController"
+        ) as! MovieDetailTableViewController
 
         vc.movie = movie
         vc.delegate = self
@@ -151,6 +223,43 @@ private extension MovieCollectionViewController {
             vc,
             animated: true
         )
+    }
+
+}
+
+// 비즈니스
+private extension MovieCollectionViewController {
+
+    func searchToMovie() {
+        guard let searchText = searchBar.text?.lowercased()
+        else {return}
+
+        guard !(searchText
+            .trimmingCharacters(in: .whitespaces)
+            .isEmpty)
+        else {
+            restorationToMovies()
+            return
+        }
+
+        isSearch = true
+        searchMovies.removeAll()
+
+        for movie in movies {
+            let title = movie.title.lowercased()
+            if title.contains(searchText) {
+                searchMovies.append(movie)
+            }
+        }
+
+        collectionView.reloadData()
+    }
+
+    func restorationToMovies() {
+        isSearch = false
+        searchMovies.removeAll()
+        searchBar.text = ""
+        collectionView.reloadData()
     }
 
 }

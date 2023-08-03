@@ -9,6 +9,11 @@ import UIKit
 
 final class SearchCollectionViewController: UICollectionViewController {
 
+    let searchBar = UISearchBar()
+
+    let list = ["iOS", "iPad", "Android", "Apple", "Watch", "사과", "사자"]
+    var searchList: [String] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,13 +28,15 @@ final class SearchCollectionViewController: UICollectionViewController {
         )
 
         setCollectionViewLayout()
+
+        configureHierarchy()
     }
 
     //
     func setCollectionViewLayout() {
         let spacing: CGFloat = 16.0
 
-        let width = (UIScreen.main.bounds.width - spacing * 6) / 5
+        let width = (UIScreen.main.bounds.width - spacing * 4) / 3
         let height = width
 
         let layout = UICollectionViewFlowLayout()
@@ -54,7 +61,7 @@ final class SearchCollectionViewController: UICollectionViewController {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 100
+        return searchList.count
     }
 
     override func collectionView(
@@ -67,7 +74,7 @@ final class SearchCollectionViewController: UICollectionViewController {
         ) as? SearchCollectionViewCell
 
         cell?.backgroundColor = .brown
-        cell?.contentsLabel.text = "\(indexPath)"
+        cell?.contentsLabel.text = searchList[indexPath.item]
 
         return cell ?? UICollectionViewCell()
     }
@@ -81,19 +88,62 @@ final class SearchCollectionViewController: UICollectionViewController {
 
 }
 
-extension SearchCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension SearchCollectionViewController: UISearchBarDelegate {
 
-//    func collectionView(
-//        _ collectionView: UICollectionView,
-//        layout collectionViewLayout: UICollectionViewLayout,
-//        sizeForItemAt indexPath: IndexPath
-//    ) -> CGSize {
-//        let itemSpacing: CGFloat = 16.0
-//        let inset: CGFloat = 16.0
-//        let width = (collectionView.bounds.width - itemSpacing - inset * 3) / 3
-//        let height = width
-//
-//        return CGSize(width: width, height: height)
-//    }
+    func searchBarSearchButtonClicked(
+        _ searchBar: UISearchBar
+    ) {
+        searchingText()
+    }
+
+    func searchBarCancelButtonClicked(
+        _ searchBar: UISearchBar
+    ) {
+        searchList.removeAll()
+        searchBar.text = ""
+        collectionView.reloadData()
+    }
+
+    func searchBar(
+        _ searchBar: UISearchBar,
+        textDidChange searchText: String
+    ) {
+        searchingText()
+    }
+
+}
+
+private extension SearchCollectionViewController {
+
+    func configureSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "검색어를 입력해주세요"
+        searchBar.showsCancelButton = true
+        navigationItem.titleView = searchBar
+    }
+
+    func configureHierarchy() {
+        configureSearchBar()
+    }
+
+}
+
+private extension SearchCollectionViewController {
+
+    func searchingText() {
+        guard let searchBarText = searchBar.text?.lowercased()
+        else {return}
+
+        searchList.removeAll()
+
+        list.forEach {
+            let standard = $0.lowercased()
+            if standard.contains(searchBarText) {
+                searchList.append($0)
+            }
+        }
+
+        collectionView.reloadData()
+    }
 
 }
