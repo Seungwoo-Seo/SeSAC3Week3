@@ -262,4 +262,16 @@ private extension MovieCollectionViewController {
         collectionView.reloadData()
     }
 
+
+
+    // MARK: Test
+    func test() {
+        // 몇번째 인덱스에 있는지
+        for movie in movies.enumerated() {
+
+        }
+    }
+
 }
+
+
