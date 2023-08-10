@@ -1,5 +1,5 @@
 //
-//  MovieDetailInfoTableViewCell.swift
+//  BookDetailInfoTableViewCell.swift
 //  SeSAC3Week3
 //
 //  Created by 서승우 on 2023/08/03.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-final class MovieDetailInfoTableViewCell: UITableViewCell {
-    static let identifier = "MovieDetailInfoTableViewCell"
+final class BookDetailInfoTableViewCell: UITableViewCell {
+    static let identifier = "BookDetailInfoTableViewCell"
 
     let placeholderText = "내용을 입력해주세요"
 
     @IBOutlet weak var basicInfoLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var memoTextView: UITextView!
 
@@ -30,14 +30,16 @@ final class MovieDetailInfoTableViewCell: UITableViewCell {
         memoTextView.resignFirstResponder()
     }
 
-    func configure(movie: Movie) {
-        basicInfoLabel.text = movie.basicInfo
-        overviewLabel.text = movie.overview
+    func configure(book: Book?) {
+        guard let book = book else {return}
+
+        basicInfoLabel.text = book.datetime
+        overviewLabel.text = book.description
     }
 
 }
 
-extension MovieDetailInfoTableViewCell: UITextViewDelegate {
+extension BookDetailInfoTableViewCell: UITextViewDelegate {
 
     // 편집이 시작될 때(커서가 시작될 때)
     // 플레이스 홀더와 텍스트뷰 글자가 같다면 clear, color
@@ -59,7 +61,7 @@ extension MovieDetailInfoTableViewCell: UITextViewDelegate {
 
 }
 
-private extension MovieDetailInfoTableViewCell {
+private extension BookDetailInfoTableViewCell {
 
     func configureCell() {
         backgroundColor = UIColor(

@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class MovieDetailTableViewController: UITableViewController {
-    static let identifier = "MovieDetailViewController"
+final class BookDetailTableViewController: UITableViewController {
+    static let identifier = "BookDetailTableViewController"
 
-    var movie: Movie?
-    weak var delegate: MovieDetailTableViewHeaderDelegate?
+    var book: Book?
+    weak var delegate: BookDetailTableViewHeaderDelegate?
 
-    @IBOutlet weak var tableHeaderView: MovieDetailTableViewHeader!
+    @IBOutlet weak var tableHeaderView: BookDetailTableViewHeader!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ final class MovieDetailTableViewController: UITableViewController {
 
 }
 
-extension MovieDetailTableViewController {
+extension BookDetailTableViewController {
 
     override func tableView(
         _ tableView: UITableView,
@@ -36,24 +36,19 @@ extension MovieDetailTableViewController {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        guard let movie = movie
-        else {return UITableViewCell()}
-
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: MovieDetailInfoTableViewCell.identifier,
+            withIdentifier: BookDetailInfoTableViewCell.identifier,
             for: indexPath
-        ) as! MovieDetailInfoTableViewCell
+        ) as! BookDetailInfoTableViewCell
 
-        cell.configure(
-            movie: movie
-        )
+        cell.configure(book: book)
 
         return cell
     }
 
 }
 
-extension MovieDetailTableViewController: MovieDetailTableViewHeaderDelegate {
+extension BookDetailTableViewController: BookDetailTableViewHeaderDelegate {
 
     func cancelTheLike(movie: Movie?) {}
 
@@ -63,7 +58,7 @@ extension MovieDetailTableViewController: MovieDetailTableViewHeaderDelegate {
 
 }
 
-private extension MovieDetailTableViewController {
+private extension BookDetailTableViewController {
 
     func configureNavigationBar() {
         let navigationBarAppearance = UINavigationBarAppearance()
@@ -87,16 +82,15 @@ private extension MovieDetailTableViewController {
     }
 
     func configureTableHeaderView() {
-        tableHeaderView.frame.size.height = 180
+//        tableHeaderView.frame.size.height = 120
         tableHeaderView.homeDelegate = delegate
         tableHeaderView.detailDelegate = self
+        tableHeaderView.book = book
+
         if navigationController != nil {
-            tableHeaderView.configure(movie: movie!)
+            tableHeaderView.configure()
         } else {
-            tableHeaderView.configure(
-                movie: movie!,
-                isHidden: false
-            )
+            tableHeaderView.configure(isHidden: false)
         }
     }
 
@@ -104,12 +98,12 @@ private extension MovieDetailTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
 
         let nib = UINib(
-            nibName: MovieDetailInfoTableViewCell.identifier,
+            nibName: BookDetailInfoTableViewCell.identifier,
             bundle: nil
         )
         tableView.register(
             nib,
-            forCellReuseIdentifier: MovieDetailInfoTableViewCell.identifier
+            forCellReuseIdentifier: BookDetailInfoTableViewCell.identifier
         )
     }
 

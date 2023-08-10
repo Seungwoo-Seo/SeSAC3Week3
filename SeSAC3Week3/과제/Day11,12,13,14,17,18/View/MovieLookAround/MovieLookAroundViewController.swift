@@ -108,10 +108,10 @@ extension MovieLookAroundViewController: RecentlySeenTableViewCellDelegate {
 
     func didSelectItemAt(movie: Movie) {
         let vc = storyboard?.instantiateViewController(
-            withIdentifier: MovieDetailTableViewController.identifier
-        ) as! MovieDetailTableViewController
+            withIdentifier: BookDetailTableViewController.identifier
+        ) as! BookDetailTableViewController
         vc.modalPresentationStyle = .fullScreen
-        vc.movie = movie
+//        vc.movie = movie
 
         present(vc, animated: true)
     }
@@ -159,10 +159,10 @@ private extension MovieLookAroundViewController {
 
     func presentToMovieDetailViewController(movie: Movie) {
         let vc = storyboard?.instantiateViewController(
-            withIdentifier: MovieDetailTableViewController.identifier
-        ) as! MovieDetailTableViewController
+            withIdentifier: BookDetailTableViewController.identifier
+        ) as! BookDetailTableViewController
         vc.modalPresentationStyle = .fullScreen
-        vc.movie = movie
+//        vc.movie = movie
 
         present(vc, animated: true)
     }
