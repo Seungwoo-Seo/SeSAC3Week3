@@ -22,12 +22,19 @@
 		57019DA02A77795300E515BD /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57019D9F2A77795300E515BD /* SearchCollectionViewController.swift */; };
 		57019DA32A777AD000E515BD /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57019DA12A777AD000E515BD /* SearchCollectionViewCell.swift */; };
 		57019DA42A777AD000E515BD /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57019DA22A777AD000E515BD /* SearchCollectionViewCell.xib */; };
-		57019DA92A7797A500E515BD /* BookCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57019DA82A7797A500E515BD /* BookCollectionViewController.swift */; };
+		57019DA92A7797A500E515BD /* BookHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57019DA82A7797A500E515BD /* BookHomeViewController.swift */; };
 		57019DAB2A779B4900E515BD /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57019DAA2A779B4900E515BD /* MovieInfo.swift */; };
+		5756B5F22AA5CFDA001A83D9 /* ReuseableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756B5F12AA5CFDA001A83D9 /* ReuseableProtocol.swift */; };
+		5756B5F42AA5D089001A83D9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756B5F32AA5D089001A83D9 /* BaseViewController.swift */; };
+		5756B5F82AA5D52B001A83D9 /* BookHomeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756B5F72AA5D52B001A83D9 /* BookHomeCollectionView.swift */; };
+		5756B5FA2AA5D726001A83D9 /* BookHomeRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756B5F92AA5D726001A83D9 /* BookHomeRootView.swift */; };
 		57627D202A79F23500B37AF1 /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57627D1F2A79F23500B37AF1 /* Timeline.storyboard */; };
 		57627D222A79F28600B37AF1 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57627D212A79F28600B37AF1 /* TimelineViewController.swift */; };
 		57627D252A79F9E500B37AF1 /* TimelineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57627D232A79F9E500B37AF1 /* TimelineCollectionViewCell.swift */; };
 		57627D262A79F9E500B37AF1 /* TimelineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57627D242A79F9E500B37AF1 /* TimelineCollectionViewCell.xib */; };
+		5776CF0A2AA622E80061D6FC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5776CF092AA622E80061D6FC /* Realm */; };
+		5776CF0C2AA622E80061D6FC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5776CF0B2AA622E80061D6FC /* RealmSwift */; };
+		5776CF0F2AA6262F0061D6FC /* RMBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776CF0E2AA6262F0061D6FC /* RMBook.swift */; };
 		57B3739E2A7B72BE00B78AC1 /* LottoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3739D2A7B72BE00B78AC1 /* LottoViewController.swift */; };
 		57C2494B2A77A4850032B779 /* BookDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C2494A2A77A4850032B779 /* BookDetailTableViewController.swift */; };
 		57C2494D2A77A4D80032B779 /* BookSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C2494C2A77A4D80032B779 /* BookSearchViewController.swift */; };
@@ -43,7 +50,6 @@
 		57D371BC2A8284AC001A5029 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D371BB2A8284AC001A5029 /* Book.swift */; };
 		57D371BE2A8314EA001A5029 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 57D371BD2A8314EA001A5029 /* .gitignore */; };
 		57D371C02A831527001A5029 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D371BF2A831527001A5029 /* APIKey.swift */; };
-		57D371C42A83CD2D001A5029 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D371C32A83CD2D001A5029 /* TestViewController.swift */; };
 		57D371CC2A83EE4E001A5029 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 57D371CB2A83EE4E001A5029 /* Kingfisher */; };
 		57D371CF2A84073B001A5029 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D371CD2A84073B001A5029 /* BookCollectionViewCell.swift */; };
 		57D371D02A84073B001A5029 /* BookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57D371CE2A84073B001A5029 /* BookCollectionViewCell.xib */; };
@@ -83,12 +89,17 @@
 		57019DA12A777AD000E515BD /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		57019DA22A777AD000E515BD /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		57019DA62A77979000E515BD /* BookWarm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookWarm.storyboard; sourceTree = "<group>"; };
-		57019DA82A7797A500E515BD /* BookCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewController.swift; sourceTree = "<group>"; };
+		57019DA82A7797A500E515BD /* BookHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeViewController.swift; sourceTree = "<group>"; };
 		57019DAA2A779B4900E515BD /* MovieInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
+		5756B5F12AA5CFDA001A83D9 /* ReuseableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableProtocol.swift; sourceTree = "<group>"; };
+		5756B5F32AA5D089001A83D9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5756B5F72AA5D52B001A83D9 /* BookHomeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeCollectionView.swift; sourceTree = "<group>"; };
+		5756B5F92AA5D726001A83D9 /* BookHomeRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeRootView.swift; sourceTree = "<group>"; };
 		57627D1F2A79F23500B37AF1 /* Timeline.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		57627D212A79F28600B37AF1 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		57627D232A79F9E500B37AF1 /* TimelineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCollectionViewCell.swift; sourceTree = "<group>"; };
 		57627D242A79F9E500B37AF1 /* TimelineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineCollectionViewCell.xib; sourceTree = "<group>"; };
+		5776CF0E2AA6262F0061D6FC /* RMBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMBook.swift; sourceTree = "<group>"; };
 		57B3739C2A7B3F0E00B78AC1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		57B3739D2A7B72BE00B78AC1 /* LottoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoViewController.swift; sourceTree = "<group>"; };
 		57C2494A2A77A4850032B779 /* BookDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +113,6 @@
 		57D371BB2A8284AC001A5029 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		57D371BD2A8314EA001A5029 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		57D371BF2A831527001A5029 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
-		57D371C32A83CD2D001A5029 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		57D371CD2A84073B001A5029 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		57D371CE2A84073B001A5029 /* BookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCollectionViewCell.xib; sourceTree = "<group>"; };
 		57D371D12A84075F001A5029 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
@@ -118,8 +128,8 @@
 		57DD41BC2A7A607F00E55571 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		57DD41C02A7A81BD00E55571 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		57DD41C42A7A9F6D00E55571 /* MovieLookAroundTableViewSecionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLookAroundTableViewSecionKind.swift; sourceTree = "<group>"; };
-		57E6EB772A7BCB6700A3DAA3 /* BookDetailInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookDetailInfoTableViewCell.swift; path = "SeSAC3Week3/과제/Day11,12,13,14,17,18/View/BookDetail/tableView/Cell/BookDetailInfoTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		57E6EB782A7BCB6700A3DAA3 /* BookDetailInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BookDetailInfoTableViewCell.xib; path = "SeSAC3Week3/과제/Day11,12,13,14,17,18/View/BookDetail/tableView/Cell/BookDetailInfoTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		57E6EB772A7BCB6700A3DAA3 /* BookDetailInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookDetailInfoTableViewCell.swift; path = "SeSAC3Week3/과제/Day11,12,13,14,17,18/Scene/BookDetail/tableView/Cell/BookDetailInfoTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		57E6EB782A7BCB6700A3DAA3 /* BookDetailInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BookDetailInfoTableViewCell.xib; path = "SeSAC3Week3/과제/Day11,12,13,14,17,18/Scene/BookDetail/tableView/Cell/BookDetailInfoTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +139,8 @@
 			files = (
 				57D371CC2A83EE4E001A5029 /* Kingfisher in Frameworks */,
 				57D371782A808087001A5029 /* SwiftyJSON in Frameworks */,
+				5776CF0A2AA622E80061D6FC /* Realm in Frameworks */,
+				5776CF0C2AA622E80061D6FC /* RealmSwift in Frameworks */,
 				57D371752A80804D001A5029 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,11 +224,41 @@
 			isa = PBXGroup;
 			children = (
 				57C2495C2A792E5F0032B779 /* Model */,
-				57C2496E2A7937300032B779 /* View */,
-				57DD41BF2A7A819C00E55571 /* Object */,
+				57DD41BF2A7A819C00E55571 /* UI */,
+				5756B5F02AA5CF93001A83D9 /* Base */,
+				57C2496E2A7937300032B779 /* Scene */,
 				57C249502A77A6200032B779 /* Extension */,
+				5776CF0D2AA626190061D6FC /* Realm */,
 			);
 			path = "Day11,12,13,14,17,18";
+			sourceTree = "<group>";
+		};
+		5756B5F02AA5CF93001A83D9 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				5756B5F12AA5CFDA001A83D9 /* ReuseableProtocol.swift */,
+				5756B5F32AA5D089001A83D9 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		5756B5F52AA5D216001A83D9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				57C249512A77A63B0032B779 /* MovieCollectionViewCell.swift */,
+				57D371CD2A84073B001A5029 /* BookCollectionViewCell.swift */,
+				57D371CE2A84073B001A5029 /* BookCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		5756B5F62AA5D511001A83D9 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5756B5F72AA5D52B001A83D9 /* BookHomeCollectionView.swift */,
+				5756B5F52AA5D216001A83D9 /* Cell */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		57627D192A794FD900B37AF1 /* TableHeader */ = {
@@ -246,6 +288,14 @@
 				57C249632A792EFB0032B779 /* Cell */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		5776CF0D2AA626190061D6FC /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				5776CF0E2AA6262F0061D6FC /* RMBook.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		57C249502A77A6200032B779 /* Extension */ = {
@@ -289,10 +339,9 @@
 		57C2495D2A792E6C0032B779 /* BookHome */ = {
 			isa = PBXGroup;
 			children = (
-				57019DA82A7797A500E515BD /* BookCollectionViewController.swift */,
-				57C249512A77A63B0032B779 /* MovieCollectionViewCell.swift */,
-				57D371CD2A84073B001A5029 /* BookCollectionViewCell.swift */,
-				57D371CE2A84073B001A5029 /* BookCollectionViewCell.xib */,
+				57019DA82A7797A500E515BD /* BookHomeViewController.swift */,
+				5756B5F92AA5D726001A83D9 /* BookHomeRootView.swift */,
+				5756B5F62AA5D511001A83D9 /* CollectionView */,
 			);
 			path = BookHome;
 			sourceTree = "<group>";
@@ -317,7 +366,7 @@
 			path = ../tableView/Cell;
 			sourceTree = "<group>";
 		};
-		57C2496E2A7937300032B779 /* View */ = {
+		57C2496E2A7937300032B779 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				57019DA62A77979000E515BD /* BookWarm.storyboard */,
@@ -325,9 +374,8 @@
 				57C2495B2A792E570032B779 /* BookDetail */,
 				57C2495E2A792E770032B779 /* BookSearch */,
 				57DD41B02A7A57E400E55571 /* MovieLookAround */,
-				57D371C32A83CD2D001A5029 /* TestViewController.swift */,
 			);
-			path = View;
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		57DD41B02A7A57E400E55571 /* MovieLookAround */ = {
@@ -339,12 +387,12 @@
 			path = MovieLookAround;
 			sourceTree = "<group>";
 		};
-		57DD41BF2A7A819C00E55571 /* Object */ = {
+		57DD41BF2A7A819C00E55571 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				57DD41C02A7A81BD00E55571 /* DynamicHeightCollectionView.swift */,
 			);
-			path = Object;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		57DD41C22A7A9F3E00E55571 /* Cell */ = {
@@ -397,6 +445,8 @@
 				57D371742A80804D001A5029 /* Alamofire */,
 				57D371772A808087001A5029 /* SwiftyJSON */,
 				57D371CB2A83EE4E001A5029 /* Kingfisher */,
+				5776CF092AA622E80061D6FC /* Realm */,
+				5776CF0B2AA622E80061D6FC /* RealmSwift */,
 			);
 			productName = SeSAC3Week3;
 			productReference = 57019D792A77522C00E515BD /* SeSAC3Week3.app */;
@@ -430,6 +480,7 @@
 				57D371732A80804D001A5029 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				57D371762A808087001A5029 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				57D371CA2A83EE4E001A5029 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				5776CF082AA622E80061D6FC /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 57019D7A2A77522C00E515BD /* Products */;
 			projectDirPath = "";
@@ -472,8 +523,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				57019D812A77522C00E515BD /* ViewController.swift in Sources */,
-				57019DA92A7797A500E515BD /* BookCollectionViewController.swift in Sources */,
+				57019DA92A7797A500E515BD /* BookHomeViewController.swift in Sources */,
 				57D371D72A84FB6B001A5029 /* BookSearchTableViewCell.swift in Sources */,
+				5756B5FA2AA5D726001A83D9 /* BookHomeRootView.swift in Sources */,
 				57B3739E2A7B72BE00B78AC1 /* LottoViewController.swift in Sources */,
 				57DD41C52A7A9F6D00E55571 /* MovieLookAroundTableViewSecionKind.swift in Sources */,
 				57DD41C12A7A81BD00E55571 /* DynamicHeightCollectionView.swift in Sources */,
@@ -482,11 +534,12 @@
 				57C2494B2A77A4850032B779 /* BookDetailTableViewController.swift in Sources */,
 				57627D252A79F9E500B37AF1 /* TimelineCollectionViewCell.swift in Sources */,
 				57D371C02A831527001A5029 /* APIKey.swift in Sources */,
+				5756B5F42AA5D089001A83D9 /* BaseViewController.swift in Sources */,
+				5776CF0F2AA6262F0061D6FC /* RMBook.swift in Sources */,
 				57D371D22A84075F001A5029 /* Int+.swift in Sources */,
 				57D371DA2A85063E001A5029 /* NSMutableAttributedString+.swift in Sources */,
 				57C2494D2A77A4D80032B779 /* BookSearchViewController.swift in Sources */,
 				57D371BC2A8284AC001A5029 /* Book.swift in Sources */,
-				57D371C42A83CD2D001A5029 /* TestViewController.swift in Sources */,
 				57627D222A79F28600B37AF1 /* TimelineViewController.swift in Sources */,
 				57019D9E2A77623900E515BD /* Extension+UIViewController.swift in Sources */,
 				57019DA32A777AD000E515BD /* SearchCollectionViewCell.swift in Sources */,
@@ -500,10 +553,12 @@
 				57D371CF2A84073B001A5029 /* BookCollectionViewCell.swift in Sources */,
 				57DD41B52A7A5E2900E55571 /* RecentlySeenTableViewCell.swift in Sources */,
 				57019DA02A77795300E515BD /* SearchCollectionViewController.swift in Sources */,
+				5756B5F22AA5CFDA001A83D9 /* ReuseableProtocol.swift in Sources */,
 				57DD41B92A7A5E6500E55571 /* PopularTheseDaysTableViewCell.swift in Sources */,
 				57C249582A789B650032B779 /* SettingTableViewController.swift in Sources */,
 				57E6EB792A7BCB6700A3DAA3 /* BookDetailInfoTableViewCell.swift in Sources */,
 				57019DAB2A779B4900E515BD /* MovieInfo.swift in Sources */,
+				5756B5F82AA5D52B001A83D9 /* BookHomeCollectionView.swift in Sources */,
 				57019D9A2A77538B00E515BD /* DiaryTableViewCell.swift in Sources */,
 				57C249522A77A63B0032B779 /* MovieCollectionViewCell.swift in Sources */,
 				57DD41B22A7A583D00E55571 /* MovieLookAroundViewController.swift in Sources */,
@@ -726,6 +781,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5776CF082AA622E80061D6FC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.42.1;
+			};
+		};
 		57D371732A80804D001A5029 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -753,6 +816,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5776CF092AA622E80061D6FC /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5776CF082AA622E80061D6FC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		5776CF0B2AA622E80061D6FC /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5776CF082AA622E80061D6FC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		57D371742A80804D001A5029 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 57D371732A80804D001A5029 /* XCRemoteSwiftPackageReference "Alamofire" */;

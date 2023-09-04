@@ -8,8 +8,6 @@
 import UIKit
 
 final class TimelineCollectionViewCell: UICollectionViewCell {
-    static let identifier = "TimelineCollectionViewCell"
-
     @IBOutlet weak var contentsLabel: UILabel!
 
     override func awakeFromNib() {
