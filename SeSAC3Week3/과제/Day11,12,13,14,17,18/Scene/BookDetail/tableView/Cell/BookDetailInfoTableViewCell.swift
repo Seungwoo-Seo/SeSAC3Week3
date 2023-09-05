@@ -8,8 +8,6 @@
 import UIKit
 
 final class BookDetailInfoTableViewCell: UITableViewCell {
-    static let identifier = "BookDetailInfoTableViewCell"
-
     let placeholderText = "내용을 입력해주세요"
 
     @IBOutlet weak var basicInfoLabel: UILabel!

@@ -1,16 +1,17 @@
 //
-//  BookCollectionViewController.swift
+//  BookHomeViewController.swift
 //  SeSAC3Week3
 //
 //  Created by 서승우 on 2023/07/31.
 //
 
 import Alamofire
+import RealmSwift
 import SwiftyJSON
 import UIKit
 
-final class BookCollectionViewController: UICollectionViewController {
-
+final class BookHomeViewController: BaseViewController {
+    // MARK: - View
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: self.resultsTableViewController)
         searchController.searchResultsUpdater = self
@@ -19,7 +20,6 @@ final class BookCollectionViewController: UICollectionViewController {
 
         return searchController
     }()
-
     lazy var resultsTableViewController: UITableViewController = {
         let tableViewController = UITableViewController()
         tableViewController.tableView.dataSource = self
@@ -31,10 +31,12 @@ final class BookCollectionViewController: UICollectionViewController {
 
         return tableViewController
     }()
+    @IBOutlet var rootView: BookHomeRootView!
 
+    // MARK: - Data
     var bookList: [Book] = [] {
         didSet {
-            collectionView.reloadData()
+            rootView.collectionView.reloadData()
         }
     }
     var searchBookList: [Book] = [] {
@@ -42,34 +44,56 @@ final class BookCollectionViewController: UICollectionViewController {
             resultsTableViewController.tableView.reloadData()
         }
     }
+    var isSearch = false // 검색인지 아닌지 확인
 
-    // 검색인지 아닌지 확인
-    var isSearch = false
+    var tasks: Results<RMBook>!
 
+    // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureHierarchy()
-
-        let query = ["고양이", "강아지", "수달", "호랑이", "사자"].randomElement()
-        fetchData(query: query)
+        let realm = try! Realm()
+        tasks = realm.objects(RMBook.self).sorted(byKeyPath: "date", ascending: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         configureNavigationBar_default()
-        updateNavigationBar()
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+        rootView.collectionView.reloadData()
     }
 
-    override func collectionView(
+    override func initalConfigure() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "고래밥님의 책장"
+        navigationItem.backButtonTitle = ""
+        navigationItem.searchController = searchController
+        rootView.collectionView.dataSource = self
+        rootView.collectionView.delegate = self
+    }
+
+    // MARK: - Event
+    @objc
+    func didTapLikeButton(_ sender: UIButton) {
+        sender.toggle
+//        movies[sender.tag].like = sender.isSelected
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    }
+
+}
+
+extension BookHomeViewController: UICollectionViewDataSource {
+
+    func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return bookList.count
+        return tasks.count
     }
 
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
@@ -78,7 +102,7 @@ final class BookCollectionViewController: UICollectionViewController {
             for: indexPath
         ) as! BookCollectionViewCell
 
-        let book = bookList[indexPath.row]
+        let book = tasks[indexPath.row]
         cell.configure(book: book)
 
         // MARK: 다시
@@ -92,7 +116,11 @@ final class BookCollectionViewController: UICollectionViewController {
         return cell
     }
 
-    override func collectionView(
+}
+
+extension BookHomeViewController: UICollectionViewDelegate {
+
+    func collectionView(
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
@@ -102,12 +130,11 @@ final class BookCollectionViewController: UICollectionViewController {
 
 }
 
-extension BookCollectionViewController: UISearchResultsUpdating {
+extension BookHomeViewController: UISearchResultsUpdating {
 
     func updateSearchResults(
         for searchController: UISearchController
     ) {
-
         // 1. 서치바에서 검색을 한다면
         // 2. 검색한 데이터들을 담을 공간이 필요
         // 3. 해당 공간에 있는 데이터들을 기준으로 테이블 뷰를 업데이트
@@ -117,7 +144,7 @@ extension BookCollectionViewController: UISearchResultsUpdating {
 
 }
 
-extension BookCollectionViewController: UISearchBarDelegate {
+extension BookHomeViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(
         _ searchBar: UISearchBar
@@ -125,7 +152,6 @@ extension BookCollectionViewController: UISearchBarDelegate {
         pushToBookSearchViewController(
             searchText: searchBar.text
         )
-//        searchToBook(text: searchBar.text)
     }
 
     func searchBarCancelButtonClicked(
@@ -137,7 +163,7 @@ extension BookCollectionViewController: UISearchBarDelegate {
 
 }
 
-extension BookCollectionViewController: UITableViewDataSource {
+extension BookHomeViewController: UITableViewDataSource {
 
     func tableView(
         _ tableView: UITableView,
@@ -163,11 +189,36 @@ extension BookCollectionViewController: UITableViewDataSource {
 
 }
 
-extension BookCollectionViewController: UITableViewDelegate {
+extension BookHomeViewController: UITableViewDelegate {
+
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        let book = searchBookList[indexPath.row]
+        var authros: List<String> = List()
+        book.authors.forEach { authros.append($0) }
+
+        let realm = try! Realm()
+        let task = RMBook(
+            title: book.title,
+            content: book.description,
+            originalPrice: book.originalPrice,
+            salePrice: book.salePrice,
+            thumbnail: book.thumbnail,
+            datetime: book.datetime,
+            authors: authros
+        )
+
+        try! realm.write {
+            realm.add(task)
+            print("Realm add")
+        }
+    }
 
 }
 
-extension BookCollectionViewController: BookDetailTableViewHeaderDelegate {
+extension BookHomeViewController: BookDetailTableViewHeaderDelegate {
 
     func cancelTheLike(movie: Movie?) {
 //        if let index = movies.firstIndex(where: { $0.title == movie?.title }) {
@@ -185,79 +236,8 @@ extension BookCollectionViewController: BookDetailTableViewHeaderDelegate {
 
 }
 
-// UI - viewDidLoad
-private extension BookCollectionViewController {
-
-    func configureNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "고래밥님의 책장"
-        navigationItem.backButtonTitle = ""
-        navigationItem.searchController = searchController
-    }
-
-//    func configureSearchBar() {
-        // cancel 버튼 수정하려면 이렇게 해야하는가? 굳이?
-//        if let containerView = searchController.searchBar.subviews.first?.subviews.last {
-//            for subView in containerView.subviews {
-//                if let button = subView as? UIButton {
-//                    button.setTitle("취소", for: .normal)
-//                }
-//            }
-//        }
-//    }
-
-    func configureCollectionView() {
-        let spacing: CGFloat = 16.0
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = spacing
-        layout.minimumInteritemSpacing = spacing
-        layout.sectionInset = UIEdgeInsets(
-            top: spacing,
-            left: spacing,
-            bottom: spacing,
-            right: spacing
-        )
-
-        let width = (UIScreen.main.bounds.width - spacing * 3) / 2
-        let height = width
-        layout.itemSize = CGSize(width: width, height: height)
-
-        collectionView.collectionViewLayout = layout
-
-        let nib = UINib(
-            nibName: BookCollectionViewCell.identifier,
-            bundle: nil
-        )
-        collectionView.register(
-            nib,
-            forCellWithReuseIdentifier: BookCollectionViewCell.identifier
-        )
-    }
-
-    func configureHierarchy() {
-        configureNavigationBar()
-        configureCollectionView()
-    }
-
-}
-
-// UI - viewWillAppear
-private extension BookCollectionViewController {
-
-    func updateNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-
-}
-
 // 동작
-private extension BookCollectionViewController {
-
-    @objc
-    func didTapLikeButton(_ sender: UIButton) {
-        sender.toggle
-//        movies[sender.tag].like = sender.isSelected
-    }
+private extension BookHomeViewController {
 
     func pushToBookDetailViewController(book: Book) {
         let vc = storyboard?.instantiateViewController(
@@ -290,7 +270,7 @@ private extension BookCollectionViewController {
 }
 
 // 네트워킹
-private extension BookCollectionViewController {
+private extension BookHomeViewController {
 
     func fetchData(query: String?) {
         guard let query = query else {return}
@@ -359,7 +339,7 @@ private extension BookCollectionViewController {
 }
 
 // 비즈니스
-private extension BookCollectionViewController {
+private extension BookHomeViewController {
 
     func searchToBook(text: String?) {
         guard let searchText = text?.lowercased()
@@ -383,25 +363,15 @@ private extension BookCollectionViewController {
             }
         }
 
-        collectionView.reloadData()
+        rootView.collectionView.reloadData()
     }
 
     func restorationToBooks() {
         isSearch = false
         searchBookList.removeAll()
         searchController.searchBar.text = ""
-        collectionView.reloadData()
+        rootView.collectionView.reloadData()
     }
-
-
-
-//    // MARK: Test
-//    func test() {
-//        // 몇번째 인덱스에 있는지
-//        for movie in movies.enumerated() {
-//
-//        }
-//    }
 
 }
 

@@ -12,8 +12,6 @@ protocol RecentlySeenTableViewCellDelegate: AnyObject {
 }
 
 final class RecentlySeenTableViewCell: UITableViewCell {
-    static let identifier = "RecentlySeenTableViewCell"
-
     var recentlySeenMovies: [Movie] = []
 
     weak var delegate: RecentlySeenTableViewCellDelegate?

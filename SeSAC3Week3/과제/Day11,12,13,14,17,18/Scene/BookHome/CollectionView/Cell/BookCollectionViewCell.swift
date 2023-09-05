@@ -9,8 +9,6 @@ import Kingfisher
 import UIKit
 
 final class BookCollectionViewCell: UICollectionViewCell {
-    static let identifier = "BookCollectionViewCell"
-
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var originalPriceLabel: UILabel!
@@ -23,7 +21,7 @@ final class BookCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = true
     }
 
-    func configure(book: Book) {
+    func configure(book: RMBook) {
         contentView.backgroundColor = UIColor(
             red: book.randomRGB.r,
             green: book.randomRGB.g,

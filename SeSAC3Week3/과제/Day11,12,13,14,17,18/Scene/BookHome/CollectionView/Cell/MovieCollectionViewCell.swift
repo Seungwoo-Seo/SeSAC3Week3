@@ -9,8 +9,6 @@ import Kingfisher
 import UIKit
 
 final class MovieCollectionViewCell: UICollectionViewCell {
-    static let identifier = "MovieCollectionViewCell"
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var rateLabel: UILabel!

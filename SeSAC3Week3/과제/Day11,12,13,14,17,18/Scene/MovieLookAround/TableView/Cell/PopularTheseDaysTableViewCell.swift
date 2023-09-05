@@ -8,8 +8,6 @@
 import UIKit
 
 final class PopularTheseDaysTableViewCell: UITableViewCell {
-    static let identifier = "PopularTheseDaysTableViewCell"
-
     @IBOutlet weak var thumnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var basicInformationLabel: UILabel!

@@ -9,8 +9,6 @@ import Kingfisher
 import UIKit
 
 final class BookSearchTableViewCell: UITableViewCell {
-    static let identifier = "BookSearchTableViewCell"
-
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorsLabel: UILabel!
